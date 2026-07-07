@@ -1,0 +1,49 @@
+---
+export interface VolunteerItem {
+  organization: string;
+  role: string;
+  period: string;
+  highlights: string[];
+}
+
+export interface Props {
+  items: VolunteerItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section id="volunteer" class="py-24 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-2 text-center">
+      <span class="text-primary">/</span> Voluntariado
+    </h2>
+    <p class="text-gray-500 text-center mb-16">Compromiso social y comunitario</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {items.map((v) => (
+        <div class="bg-white/[0.03] border border-white/5 rounded-2xl p-6 hover:bg-white/[0.05] transition-all" key={v.organization}>
+          <div class="flex items-start gap-3 mb-3">
+            <svg class="w-5 h-5 text-primary mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <div>
+              <h3 class="text-base font-semibold text-white">{v.organization}</h3>
+              <p class="text-sm text-primary">{v.role}</p>
+              <p class="text-xs text-gray-500 mt-0.5">{v.period}</p>
+            </div>
+          </div>
+          {v.highlights.length > 0 && (
+            <ul class="space-y-1 ml-8">
+              {v.highlights.map((h, i) => (
+                <li class="text-sm text-gray-400" key={i}>
+                  {h}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

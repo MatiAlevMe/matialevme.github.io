@@ -1,0 +1,3 @@
+{
+  "extends": ["@astrojs/tailwind"]
+}

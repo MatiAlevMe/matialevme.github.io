@@ -1,0 +1,401 @@
+{
+  "personal": {
+    "name": "Matías Vizancio Alevropulos Erlbaun",
+    "title": "Ingeniero Civil Informático | Full Stack & QA Automation | Aspirante a MLOps",
+    "email": "alevropulos@gmail.com",
+    "phone": "+56 9 6249 2688",
+    "location": "Viña del Mar, Chile",
+    "github": "https://github.com/MatiAlevMe/",
+    "linkedin": "https://www.linkedin.com/in/matias-alevropulos/",
+    "portfolio": "https://matialevme.github.io",
+    "languages": [
+      {
+        "lang": "Español",
+        "level": "Nativo"
+      },
+      {
+        "lang": "Inglés",
+        "level": "C2 Proficient (EF SET 76/100)"
+      }
+    ],
+    "pronouns": "él",
+    "avatar": "/images/avatar.jpg"
+  },
+  "summary": "Ingeniero Civil Informático (PUCV) especializado en Full Stack Development y QA Automation. Experto en Python y Ruby on Rails, transformo cuellos de botella manuales en flujos automatizados de alto rendimiento. Fuerte foco en arquitecturas sólidas, GitOps y soluciones con IA.",
+  "experience": [
+    {
+      "company": "Plataforma EVA / Zarey Consultores",
+      "description": "Plataforma SaaS de gestión ambiental y consultoría técnica.",
+      "role": "IT Project Engineer",
+      "period": "Nov 2025 - Actualidad",
+      "stack": [
+        "Ruby on Rails 6.1",
+        "MySQL",
+        "JavaScript ES6+",
+        "Chart.js",
+        "OpenLayers",
+        "Bootstrap 5",
+        "GitOps",
+        "JIRA",
+        "GitLab",
+        "AWS Device Farm"
+      ],
+      "highlights": [
+        "Módulo de Huella de Carbono (MHC) bajo licitación CORFO: Arquitectura DDD con 15+ modelos, 8 servicios, 28 migraciones, cálculo GHG Protocol Scope 1/2/3",
+        "Chatbot IA & Carbon Copilot: RAG con MySQL Full-Text Search, Gemini/Ollama",
+        "Sistema de Traducciones Automáticas: Pipeline con Google Cloud Translate, 4 idiomas",
+        "Excelencia Operacional: Estandarización GitOps, segregación de ambientes, Git Hooks"
+      ],
+      "media": {
+        "logo": null
+      }
+    },
+    {
+      "company": "Banco de Crédito e Inversiones (BCI)",
+      "description": null,
+      "role": "Ingeniero de Datos y Automatización - Práctica Profesional",
+      "period": "Mar 2024 - Ago 2024",
+      "stack": [
+        "Python",
+        "AWS",
+        "Azure",
+        "GCP",
+        "FOCUS FinOps",
+        "SQL",
+        "APIs de nube"
+      ],
+      "highlights": [
+        "Chatbot empresarial: Reduje análisis de costos cloud de 3-4 semanas a 2-5 días",
+        "Estándar FOCUS FinOps: Estandaricé 1,000+ columnas multi-nube, mejorando integración 25%",
+        "Reportes financieros semanales con precisión del 99%"
+      ],
+      "media": {
+        "logo": null
+      }
+    },
+    {
+      "company": "Connectis (Getronics)",
+      "description": null,
+      "role": "Analista de Servicios QA",
+      "period": "Feb 2022 - Jun 2022",
+      "stack": [
+        "Selenium",
+        "Cucumber",
+        "Maven",
+        "Jenkins",
+        "BrowserStack",
+        "Postman",
+        "Java",
+        "JavaScript",
+        "SQL"
+      ],
+      "highlights": [
+        "Automatización en 10+ proyectos QA con pipelines CI/CD en Jenkins",
+        "Cross-browser testing con BrowserStack, validación APIs con Postman/SoapUI",
+        "Capacitación a 2 colaboradores en prácticas QA"
+      ],
+      "media": {
+        "logo": null
+      }
+    }
+  ],
+  "projects": [
+    {
+      "name": "FireGuard",
+      "status": "completed",
+      "featured": true,
+      "stack": [
+        "JavaScript ES6+",
+        "Vite",
+        "Leaflet.js",
+        "PWA",
+        "IndexedDB",
+        "NASA FIRMS",
+        "Open-Meteo"
+      ],
+      "description": "PWA offline-first de coordinación de emergencias para incendios forestales. Algoritmo propio de Fire Risk Score con datos satelitales.",
+      "achievement": "Finalista track Environment & Climate Risk (Top 3 de 1,240 postulantes, 87 equipos LATAM)",
+      "image": "/images/fireguard.png",
+      "videoUrl": "https://drive.google.com/file/d/1Pg0nQZeYFuNSaShqouDNbdEjrAMg3dxW/view",
+      "demoUrl": "https://nightstar73.vercel.app/",
+      "githubUrl": "https://github.com/MatiAlevMe/FireGuard",
+      "presentationUrl": "https://tundra-willow-810.faces.site/8q840644wptu"
+    },
+    {
+      "name": "KineViz",
+      "status": "completed",
+      "featured": true,
+      "stack": [
+        "Python",
+        "Tkinter",
+        "pandas",
+        "scipy",
+        "spm1d",
+        "plotly",
+        "SQLite"
+      ],
+      "description": "Aplicación de escritorio para análisis biomecánico avanzado. Procesamiento EMG, análisis estadístico SPM y gráficos interactivos.",
+      "achievement": "Proyecto de Título - Nota 6.7/7.0",
+      "image": "/images/kineviz.png",
+      "videoUrl": "https://github.com/user-attachments/assets/1228d6c1-51da-4ada-bea8-cbeb08e7a742",
+      "demoUrl": null,
+      "githubUrl": "https://github.com/MatiAlevMe/KineViz-public",
+      "presentationUrl": null
+    },
+    {
+      "name": "MCP Server",
+      "status": "completed",
+      "featured": true,
+      "stack": [
+        "Ruby",
+        "Python",
+        "Node.js",
+        "Go",
+        "MySQL",
+        "Git"
+      ],
+      "description": "Framework MCP multi-lenguaje que conecta agentes AI con flujos de trabajo en MySQL y Git.",
+      "achievement": "Framework AI multi-lenguaje",
+      "image": "/images/mcp-server.png",
+      "videoUrl": null,
+      "demoUrl": null,
+      "githubUrl": "https://github.com/MatiAlevMe/mcp-server",
+      "presentationUrl": null
+    },
+    {
+      "name": "Job Harbor",
+      "status": "completed",
+      "featured": false,
+      "stack": [
+        "Python",
+        "Playwright",
+        "BeautifulSoup",
+        "SQLite",
+        "Gemini API",
+        "GitHub Actions"
+      ],
+      "description": "Job matcher de costo $0 que scrapea 7 portales de empleo y rankea ofertas vía keyword matching + LLM.",
+      "achievement": "Automatización diaria con GitHub Actions",
+      "image": null,
+      "videoUrl": null,
+      "demoUrl": null,
+      "githubUrl": "https://github.com/MatiAlevMe/job-harbor",
+      "presentationUrl": null
+    }
+  ],
+  "skills": [
+    {
+      "category": "Lenguajes",
+      "items": [
+        "Python",
+        "Ruby on Rails",
+        "Java",
+        "JavaScript ES6+",
+        "TypeScript",
+        "SQL",
+        "PLpgSQL"
+      ]
+    },
+    {
+      "category": "Frameworks & Librerías",
+      "items": [
+        "React",
+        "Next.js",
+        "Vite",
+        "Selenium",
+        "Cucumber",
+        "Chart.js",
+        "OpenLayers",
+        "Leaflet.js",
+        "Bootstrap 5",
+        "Tkinter"
+      ]
+    },
+    {
+      "category": "DevOps & Cloud",
+      "items": [
+        "GitOps",
+        "CI/CD",
+        "Jenkins",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Docker",
+        "BrowserStack",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "category": "IA & ML",
+      "items": [
+        "Gemini API",
+        "Ollama",
+        "RAG",
+        "MCP",
+        "Vercel AI",
+        "Faces.app AI",
+        "MySQL Full-Text Search",
+        "Redes Neuronales"
+      ]
+    },
+    {
+      "category": "Bases de Datos",
+      "items": [
+        "MySQL",
+        "PostgreSQL",
+        "SQLite",
+        "MongoDB",
+        "IndexedDB"
+      ]
+    },
+    {
+      "category": "Herramientas",
+      "items": [
+        "JIRA",
+        "GitLab",
+        "ClickUp",
+        "Postman",
+        "SoapUI",
+        "Playwright",
+        "BeautifulSoup"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Pontificia Universidad Católica de Valparaíso",
+      "degree": "",
+      "period": "",
+      "details": [],
+      "logo": null
+    },
+    {
+      "institution": "Universidad Técnica Federico Santa María",
+      "degree": "",
+      "period": "",
+      "details": [],
+      "logo": null
+    }
+  ],
+  "certifications": [
+    {
+      "name": "EF SET English Certificate C2 Proficient",
+      "issuer": "EF SET",
+      "date": "2023",
+      "url": "https://cert.efset.org/5fwT1a"
+    },
+    {
+      "name": "Título Ingeniero Civil en Informática",
+      "issuer": "PUCV",
+      "date": "2025",
+      "url": "https://certificados.ucv.cl"
+    },
+    {
+      "name": "Ley Karin - Prevención del acoso laboral",
+      "issuer": "IST",
+      "date": "2025",
+      "url": null
+    },
+    {
+      "name": "Prevención y Combate de Incendios",
+      "issuer": "IST",
+      "date": "2025",
+      "url": null
+    },
+    {
+      "name": "Primeros Auxilios",
+      "issuer": "IST",
+      "date": "2025",
+      "url": null
+    },
+    {
+      "name": "Emprende Voluntario",
+      "issuer": "PUCV",
+      "date": "2024",
+      "url": "https://drive.google.com/file/d/1LV-Hj6eEZktNdh6PJw9-Lv8NLAnzIwvC/view"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Líder de Auxilio en Incendios Viña y Apoyo a ONGs",
+      "role": "",
+      "period": "",
+      "highlights": []
+    },
+    {
+      "organization": "Voluntarios en Acción",
+      "role": "",
+      "period": "",
+      "highlights": []
+    },
+    {
+      "organization": "Misión Verde (PUCV)",
+      "role": "",
+      "period": "",
+      "highlights": []
+    },
+    {
+      "organization": "Sembrando (PUCV)",
+      "role": "",
+      "period": "",
+      "highlights": []
+    },
+    {
+      "organization": "Ayuda Humanitaria - Incendios Forestales Chile 2024",
+      "role": "",
+      "period": "",
+      "highlights": []
+    },
+    {
+      "organization": "Viña Fire Relief Leader & NGO Support",
+      "role": "",
+      "period": "",
+      "highlights": []
+    },
+    {
+      "organization": "Humanitarian Aid - Chile Forest Fires 2024",
+      "role": "",
+      "period": "",
+      "highlights": []
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Marcela Torres",
+      "role": "Service Delivery Manager",
+      "company": "Connectis (Getronics)",
+      "text": null,
+      "contact": {
+        "email": "marcela.torres@connectis-gs.cl",
+        "phone": "+56 9 6877 9010",
+        "linkedin": "https://www.linkedin.com/in/marcela-torres-09661b29/"
+      }
+    },
+    {
+      "name": "Andrés Parra",
+      "role": null,
+      "company": "Banco de Crédito e Inversiones (BCI)",
+      "text": "Matías posee una capacidad analítica excepcional, logrando balancear la visión técnica profunda con una gestión de proyectos impecable.",
+      "contact": {
+        "email": null,
+        "phone": "+56 9 4843 7805",
+        "linkedin": "https://www.linkedin.com/in/andresparracarrillo/"
+      }
+    }
+  ],
+  "githubStats": {
+    "username": "MatiAlevMe",
+    "showRepos": true,
+    "featuredRepos": [
+      "FireGuard",
+      "KineViz-public",
+      "mcp-server",
+      "job-harbor"
+    ]
+  },
+  "seo": {
+    "title": "Matías Alevropulos - Portfolio",
+    "description": "Ingeniero Civil Informático | Full Stack & QA Automation | Portfolio profesional",
+    "image": "/images/og-image.png"
+  }
+}

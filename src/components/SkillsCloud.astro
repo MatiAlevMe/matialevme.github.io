@@ -1,0 +1,50 @@
+---
+export interface SkillCategory {
+  category: string;
+  items: string[];
+}
+
+export interface Props {
+  items: SkillCategory[];
+}
+
+const { items } = Astro.props;
+
+const colorPalette = [
+  "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
+  "text-blue-400 bg-blue-400/10 border-blue-400/20",
+  "text-purple-400 bg-purple-400/10 border-purple-400/20",
+  "text-amber-400 bg-amber-400/10 border-amber-400/20",
+  "text-rose-400 bg-rose-400/10 border-rose-400/20",
+  "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+];
+---
+
+<section id="skills" class="py-24 px-4 bg-white/[0.01]">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-2 text-center">
+      <span class="text-primary">/</span> Skills
+    </h2>
+    <p class="text-gray-500 text-center mb-16">Tecnolog&iacute;as y herramientas</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {items.map((cat, idx) => (
+        <div class="bg-white/[0.03] border border-white/5 rounded-2xl p-6" key={cat.category}>
+          <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+            {cat.category}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {cat.items.map((skill) => (
+              <span
+                class={`px-3 py-1.5 text-xs font-medium rounded-lg border ${colorPalette[idx % colorPalette.length]}`}
+                key={skill}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

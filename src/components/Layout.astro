@@ -1,0 +1,61 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+const site = "https://matialevme.github.io";
+const ogImage = image ? `${site}${image}` : `${site}/images/og-image.png`;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-surface text-gray-100 font-sans antialiased">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-lg border-b border-white/5">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="#" class="text-lg font-bold text-primary hover:text-primary-light transition-colors">
+            MA<span class="text-gray-400">.</span>
+          </a>
+          <div class="hidden sm:flex items-center gap-8 text-sm">
+            <a href="#experience" class="text-gray-400 hover:text-white transition-colors">Experiencia</a>
+            <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Proyectos</a>
+            <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a>
+            <a href="#contact" class="px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-all">Contacto</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/5 py-8 text-center text-sm text-gray-500">
+      <div class="max-w-6xl mx-auto px-4">
+        <p>&copy; {new Date().getFullYear()} Mat&iacute;as Alevropulos. Hecho con Astro.</p>
+      </div>
+    </footer>
+  </body>
+</html>

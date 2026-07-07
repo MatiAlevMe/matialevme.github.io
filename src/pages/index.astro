@@ -1,0 +1,58 @@
+---
+import Layout from "../components/Layout.astro";
+import Hero from "../components/Hero.astro";
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+import ProjectsGrid from "../components/ProjectsGrid.astro";
+import SkillsCloud from "../components/SkillsCloud.astro";
+import GitHubStats from "../components/GitHubStats.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Education from "../components/Education.astro";
+import Volunteer from "../components/Volunteer.astro";
+import Contact from "../components/Contact.astro";
+import data from "../data/portfolio.json";
+
+const { personal, summary, experience, projects, skills, education, certifications, volunteer, testimonials, githubStats, seo } = data;
+---
+
+<Layout title={seo?.title || `${personal.name} - Portfolio`} description={seo?.description || summary} image={seo?.image}>
+  <Hero
+    name={personal.name}
+    title={personal.title}
+    summary={summary}
+    location={personal.location}
+    email={personal.email}
+    github={personal.github}
+    linkedin={personal.linkedin}
+    avatar={personal.avatar}
+    languages={personal.languages}
+  />
+
+  <ExperienceTimeline items={experience} />
+
+  <ProjectsGrid items={projects} />
+
+  <SkillsCloud items={skills} />
+
+  <GitHubStats
+    username={githubStats?.username || "MatiAlevMe"}
+    featuredRepos={githubStats?.featuredRepos}
+  />
+
+  <Education education={education} certifications={certifications} />
+
+  {volunteer && volunteer.length > 0 && (
+    <Volunteer items={volunteer} />
+  )}
+
+  {testimonials && testimonials.length > 0 && (
+    <Testimonials items={testimonials} />
+  )}
+
+  <Contact
+    email={personal.email}
+    phone={personal.phone}
+    github={personal.github}
+    linkedin={personal.linkedin}
+    location={personal.location}
+  />
+</Layout>

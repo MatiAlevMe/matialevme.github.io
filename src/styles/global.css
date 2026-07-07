@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-surface: #0a0a0f;
+  --color-primary: #00d4aa;
+  --color-primary-light: #00f0c0;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: #e5e7eb;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background-color: rgba(0, 212, 170, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-primary-light {
+  color: var(--color-primary-light);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-light {
+  background-color: var(--color-primary-light);
+}
+
+.hover\:text-primary:hover {
+  color: var(--color-primary);
+}
+
+.hover\:bg-primary\/20:hover {
+  background-color: rgba(0, 212, 170, 0.2);
+}
+
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.border-accent {
+  border-color: var(--color-accent);
+}
+
+.text-surface {
+  color: var(--color-surface);
+}
+
+.shadow-primary\/10 {
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.1);
+}
+
+.shadow-primary\/20 {
+  box-shadow: 0 0 30px rgba(0, 212, 170, 0.2);
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+}
+
+.bg-primary\/10 {
+  background-color: rgba(0, 212, 170, 0.1);
+}
+
+.bg-primary\/30 {
+  background-color: rgba(0, 212, 170, 0.3);
+}
+
+.bg-accent\/10 {
+  background-color: rgba(99, 102, 241, 0.1);
+}
