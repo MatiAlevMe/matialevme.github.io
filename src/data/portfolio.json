@@ -27,7 +27,7 @@
       "company": "Plataforma EVA / Zarey Consultores",
       "description": "Plataforma SaaS de gestión ambiental y consultoría técnica.",
       "role": "IT Project Engineer",
-      "period": "Nov 2025 - Actualidad",
+      "period": "Noviembre 2025 - Actualidad",
       "stack": [
         "Ruby on Rails 6.1",
         "MySQL",
@@ -54,7 +54,7 @@
       "company": "Banco de Crédito e Inversiones (BCI)",
       "description": null,
       "role": "Ingeniero de Datos y Automatización - Práctica Profesional",
-      "period": "Mar 2024 - Ago 2024",
+      "period": "Marzo 2024 - Agosto 2024",
       "stack": [
         "Python",
         "AWS",
@@ -77,7 +77,7 @@
       "company": "Connectis (Getronics)",
       "description": null,
       "role": "Analista de Servicios QA",
-      "period": "Feb 2022 - Jun 2022",
+      "period": "Febrero 2022 - Junio 2022",
       "stack": [
         "Selenium",
         "Cucumber",
@@ -264,15 +264,19 @@
   "education": [
     {
       "institution": "Pontificia Universidad Católica de Valparaíso",
-      "degree": "",
-      "period": "",
-      "details": [],
+      "degree": "Ingeniero Civil Informático",
+      "period": "Marzo 2019 - Julio 2025",
+      "details": [
+        "Licenciado en Ciencias de la Ingeniería: (2019 - 2024).",
+        "Centro de Estudiantes: Apoyo en organización de eventos y coordinación (período sin directorio por falta de quórum). (2024)",
+        "Miembro IEEE: (2024 - 2025)."
+      ],
       "logo": null
     },
     {
       "institution": "Universidad Técnica Federico Santa María",
-      "degree": "",
-      "period": "",
+      "degree": "Ingeniería Civil Telemática",
+      "period": "2016 - 2018",
       "details": [],
       "logo": null
     }
@@ -318,45 +322,63 @@
   "volunteer": [
     {
       "organization": "Líder de Auxilio en Incendios Viña y Apoyo a ONGs",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Voluntario",
+      "period": "2024–2026",
+      "highlights": [
+        "Coordinación de equipos multidisciplinarios en terreno durante incendios forestales. Líder de auxilios en Villa Independencia (Viña del Mar) y Penco/Biobío (2026), apoyo en ollas comunes y reconstrucción de casas, coordinación entre voluntarios, municipios, ONGs y damnificados. Puente de comunicación entre comunidades y autoridades."
+      ]
     },
     {
       "organization": "Voluntarios en Acción",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Director de Proyecto",
+      "period": "Marzo 2024 - Agosto 2024",
+      "highlights": [
+        "Liderazgo de comunidad de apoyo para damnificados por desastres naturales. Gestión de recursos, difusión de casos críticos y coordinación de redes de impacto social."
+      ]
     },
     {
       "organization": "Misión Verde (PUCV)",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Voluntario",
+      "period": "Febrero 2024 - 2025",
+      "highlights": [
+        "Apoyo en iniciativas de sostenibilidad y promoción de prácticas sustentables dentro de la comunidad universitaria."
+      ]
     },
     {
       "organization": "Sembrando (PUCV)",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Voluntario",
+      "period": "Octubre 2024 - 2025",
+      "highlights": [
+        "Apoyo integral a niños, niñas y adolescentes en situación de vulnerabilidad social."
+      ]
     },
     {
       "organization": "Ayuda Humanitaria - Incendios Forestales Chile 2024",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Voluntario en Terreno",
+      "period": "Febrero 2024 - Septiembre 2024",
+      "highlights": [
+        "Particular (Villa Independencia): Coordinación de remoción de escombros, reconstrucción y apoyo directo a familias, creando una red de ayuda comunitaria durante 8 meses.",
+        "INJUV Chile: Organización, traslado y entrega de ayuda humanitaria en centros de acopio y terreno (Febrero - Julio 2024).",
+        "Municipalidad de Viña del Mar: Movilización y distribución de suministros desde centros de acopio a damnificados directos del incendio de Viña del Mar 2024."
+      ]
     },
     {
       "organization": "Viña Fire Relief Leader & NGO Support",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Volunteer",
+      "period": "2024–2026",
+      "highlights": [
+        "Coordination of multidisciplinary teams in the field during forest fires. Fire relief leader in Villa Independencia (Viña del Mar) and Penco/Biobío (2026), support at community kitchens and house reconstruction, coordination between volunteers, municipalities, NGOs and affected families. Communication bridge between communities and authorities."
+      ]
     },
     {
       "organization": "Humanitarian Aid - Chile Forest Fires 2024",
-      "role": "",
-      "period": "",
-      "highlights": []
+      "role": "Field Volunteer",
+      "period": "February 2024 - September 2024",
+      "highlights": [
+        "Particular (Villa Independencia): Coordination of debris removal, reconstruction, and direct support to families, creating a community aid network for 8 months.",
+        "INJUV Chile: Organization, transportation, and delivery of humanitarian aid at collection centers and in the field (February - July 2024).",
+        "Municipality of Viña del Mar: Mobilization and distribution of supplies from collection centers to direct victims of the Viña del Mar 2024 fire."
+      ]
     }
   ],
   "testimonials": [

@@ -21,16 +21,22 @@ const { project: p } = Astro.props;
 ---
 
 <div class="group bg-white/[0.03] border border-white/5 rounded-2xl overflow-hidden hover:border-primary/30 hover:bg-white/[0.06] transition-all duration-300">
-  {p.image && (
-    <div class="aspect-video bg-surface overflow-hidden">
+  <div class="aspect-video bg-surface overflow-hidden">
+    {p.image ? (
       <img
         src={p.image}
         alt={p.name}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         loading="lazy"
       />
-    </div>
-  )}
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/10">
+        <span class="text-5xl font-bold text-primary/40 select-none">
+          {p.name.split(/[\s-]+/).map(w => w[0]).join("").slice(0, 3).toUpperCase()}
+        </span>
+      </div>
+    )}
+  </div>
 
   <div class="p-6">
     <div class="flex items-start justify-between gap-2 mb-3">

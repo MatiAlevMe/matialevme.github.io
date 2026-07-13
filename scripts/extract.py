@@ -60,7 +60,7 @@ def parse_adoc(filepath: Path) -> dict:
                 flat.extend(group)
             if flat:
                 target[key] = target.get(key, []) + flat
-        in_bullets = []
+            in_bullets = []
 
     for raw in lines:
         line = raw.rstrip()
@@ -168,6 +168,13 @@ def doc_to_portfolio(docs: list[dict]) -> dict:
         "testimonials": [],
     }
 
+    def _dedup_add(items: list[dict], new: dict, keys: list[str]):
+        """Agrega `new` solo si no existe ya un item con mismos `keys`."""
+        for existing in items:
+            if all(existing.get(k) == new.get(k) for k in keys if k in existing and k in new):
+                return
+        items.append(new)
+
     # Fusionar datos de ambos docs (español tiene prioridad)
     for doc in docs:
         personal = doc.get("personal", {})
@@ -190,7 +197,7 @@ def doc_to_portfolio(docs: list[dict]) -> dict:
         for sec in doc["sections"]:
             if sec["name"] in ("Sobre Mí", "About"):
                 items = sec.get("items", [])
-                if items:
+                if items and not portfolio["summary"]:
                     portfolio["summary"] = items[0] if items else ""
                 for sub in sec.get("subsections", []):
                     if sub["name"] in ("Información Personal", "Personal Information"):
@@ -201,35 +208,35 @@ def doc_to_portfolio(docs: list[dict]) -> dict:
                 for sub in sec.get("subsections", []):
                     exp = _parse_experience(sub)
                     if exp:
-                        portfolio["experience"].append(exp)
+                        _dedup_add(portfolio["experience"], exp, ["company", "role"])
 
             # Proyectos
             elif sec["name"] in ("Proyectos", "Projects", "Proyectos Personales"):
                 for sub in sec.get("subsections", []):
                     proj = _parse_project(sub)
                     if proj:
-                        portfolio["projects"].append(proj)
+                        _dedup_add(portfolio["projects"], proj, ["name"])
 
             # Educación
             elif sec["name"] in ("Educación", "Education"):
                 for sub in sec.get("subsections", []):
                     edu = _parse_education(sub)
                     if edu:
-                        portfolio["education"].append(edu)
+                        _dedup_add(portfolio["education"], edu, ["institution"])
 
             # Certificaciones
             elif sec["name"] in ("Licencias y Certificaciones", "Licenses and Certifications"):
                 for item in sec.get("items", []):
                     cert = _parse_certification(item)
                     if cert:
-                        portfolio["certifications"].append(cert)
+                        _dedup_add(portfolio["certifications"], cert, ["name"])
 
             # Voluntariado
             elif sec["name"] in ("Experiencia Voluntaria", "Volunteer Experience"):
                 for sub in sec.get("subsections", []):
                     vol = _parse_volunteer(sub)
                     if vol:
-                        portfolio["volunteer"].append(vol)
+                        _dedup_add(portfolio["volunteer"], vol, ["organization"])
 
             # Skills (de Specialties, _Specialties_ etc.)
             elif sec["name"] in ("Habilidades Técnicas", "Skills"):
@@ -254,22 +261,30 @@ def _parse_experience(sub: dict) -> Optional[dict]:
         "media": {"logo": None},
     }
 
-    # Buscar role y periodo en items o subsections
-    for item in sub.get("items", []):
-        # Buscar formato: "#### Rol (Periodo)"
-        m = re.match(r'(.+?)\s*\((.+?)\)', item)
-        if m and not item.startswith("-") and not item.startswith("*"):
-            exp["role"] = m.group(1).strip()
-            exp["period"] = m.group(2).strip()
-        elif item.startswith("Stack:"):
+    # La descripción suele ser el primer item (párrafo suelto)
+    items = sub.get("items", [])
+    if items:
+        first = items[0].strip()
+        # Si no parece un campo estructurado, es la descripción
+        if first and not first.startswith("Stack:") and not first.startswith("**"):
+            exp["description"] = first
+
+    # Buscar role y periodo en items
+    for item in items:
+        if item.startswith("Stack:"):
             exp["stack"] = [s.strip() for s in item[6:].split(",")]
         elif item.startswith("-"):
             exp["highlights"].append(item.lstrip("- ").strip())
 
-    # Revisar subsections (logros/achievements)
+    # Parsear role/period desde subsubsections (#### Rol (Periodo))
     for ss in sub.get("subsections", []):
-        ss_name = ss.get("name", "").lower()
-        if "logro" in ss_name or "achievement" in ss_name:
+        ss_name = ss.get("name", "").strip()
+        m = re.match(r'(.+?)\s*\((.+?)\)', ss_name)
+        if m:
+            exp["role"] = m.group(1).strip()
+            exp["period"] = m.group(2).strip()
+        ss_name_lower = ss_name.lower()
+        if "logro" in ss_name_lower or "achievement" in ss_name_lower:
             for item in ss.get("items", []):
                 exp["highlights"].append(item.lstrip("- ").strip())
 
@@ -296,25 +311,54 @@ def _parse_project(sub: dict) -> Optional[dict]:
         "presentationUrl": None,
     }
 
+    # Palabras clave que indican campos estructurados, no descripción
+    FIELD_PREFIXES = ("*Link*", "*Presentación*", "*Video Demo*", "*Deploy*", "**Stack**",
+                      "**APIs**", "**AI**", "**Logro**", "**Nota**", "**Grade**",
+                      "**Descripción**", "**Description**", "**Fecha**", "**Date**",
+                      "Stack:", "Link", "https://", "http://")
+
     for item in sub.get("items", []):
+        # Stack
         if item.startswith("Stack:") or item.startswith("**Stack**"):
             stack_str = item.split(":", 1)[1].strip().strip("**").strip()
             proj["stack"] = [s.strip() for s in stack_str.split(",")]
-        elif item.startswith("*Link*") or item.startswith("Link") or "github.com" in item.lower():
+        # GitHub link
+        elif "github.com" in item.lower():
             m = re.search(r'https://github\.com/\S+', item)
             if m:
                 proj["githubUrl"] = m.group(0)
-        elif "deploy" in item.lower() or "http" in item.lower():
+            # Si no hay match, puede ser deploy url
             urls = re.findall(r'https?://\S+', item)
             for url in urls:
                 if "github" not in url.lower() and "drive" not in url.lower():
                     proj["demoUrl"] = url
-        elif "logro" in item.lower() or "achievement" in item.lower() or "nota" in item.lower() or "grade" in item.lower():
+        # Link de presentación
+        elif item.startswith("*Presentación*") or item.startswith("*Presentation*") or item.startswith("Presentación"):
+            urls = re.findall(r'https?://\S+', item)
+            if urls:
+                proj["presentationUrl"] = urls[0]
+        # Video demo
+        elif item.startswith("*Video Demo*") or item.startswith("*Video*"):
+            urls = re.findall(r'https?://\S+', item)
+            if urls:
+                proj["videoUrl"] = urls[0]
+        # Deploy / demo URL
+        elif item.startswith("*Deploy*") or item.startswith("Deploy"):
+            urls = re.findall(r'https?://\S+', item)
+            for url in urls:
+                if "github" not in url.lower() and "drive" not in url.lower():
+                    proj["demoUrl"] = url
+        # Achievement (logro/nota)
+        elif item.startswith("**Logro**") or item.startswith("**Nota**") or item.startswith("**Grade**"):
             proj["achievement"] = item.split(":", 1)[1].strip() if ":" in item else item
-        elif item.startswith("-") or item.startswith("*"):
-            text = item.lstrip("-* ").strip()
-            if text and not proj["description"]:
-                proj["description"] = text
+        elif "logro" in item.lower() or "achievement" in item.lower() or "nota" in item.lower() or "grade" in item.lower():
+            if not any(item.startswith(p) for p in FIELD_PREFIXES):
+                proj["achievement"] = item.split(":", 1)[1].strip() if ":" in item else item
+        # Descripción: texto suelto que no es campo estructurado
+        elif not any(item.startswith(p) for p in FIELD_PREFIXES) and not proj["description"]:
+            item_clean = item.strip()
+            if item_clean and len(item_clean) > 10:
+                proj["description"] = item_clean
 
     return proj
 
@@ -324,22 +368,34 @@ def _parse_education(sub: dict) -> Optional[dict]:
     if not name:
         return None
     edu = {"institution": name, "degree": "", "period": "", "details": [], "logo": None}
+
+    def _clean(text: str) -> str:
+        return re.sub(r'^\*\*(.+?)\*\*:?\s*', r'\1: ', text).strip()
+
     for item in sub.get("items", []):
-        m = re.match(r'\s*[-*]\s+\*\*(.+?)\*\*\s*\((.+?)\)', item)
+        m = re.match(r'\*\*(.+?)\*\*\s*\((.+?)\)', item)
         if m:
-            edu["degree"] = m.group(1).strip()
-            edu["period"] = m.group(2).strip()
-        elif item.startswith("-") or item.startswith("*"):
-            edu["details"].append(item.lstrip("-* ").strip())
+            if not edu["degree"]:
+                edu["degree"] = m.group(1).strip()
+                edu["period"] = m.group(2).strip()
+            else:
+                edu["details"].append(_clean(item))
         elif not edu["degree"]:
             edu["degree"] = item
+        else:
+            edu["details"].append(_clean(item))
     return edu
 
 
 def _parse_certification(item: str) -> Optional[dict]:
-    m = re.match(r'\s*[-*]\s+\*\*(.+?)\*\*\s*:\s*(.+?)(?:\s+https?://\S+)?$', item)
+    # Item sin prefijo "- " (ya removido por parse_adoc)
+    # Formato: **Name**: issuer info. https://url
+    m = re.match(r'\*\*(.+?)\*\*\s*:\s*(.+?)(?:\s+(https?://\S+))?\s*$', item)
     if m:
-        return {"name": m.group(1).strip(), "issuer": m.group(2).strip(), "date": "", "url": None}
+        name = m.group(1).strip()
+        issuer = m.group(2).strip().rstrip(".")
+        url = m.group(3)
+        return {"name": name, "issuer": issuer, "date": "", "url": url}
     return None
 
 
@@ -348,8 +404,20 @@ def _parse_volunteer(sub: dict) -> Optional[dict]:
     if not name:
         return None
     vol = {"organization": name, "role": "", "period": "", "highlights": []}
+
+    # Role/period puede venir del nombre de la subsubsección o de items
+    for ss in sub.get("subsections", []):
+        ss_name = ss.get("name", "").strip()
+        m = re.match(r'(.+?)\s*\((.+?)\)', ss_name)
+        if m:
+            vol["role"] = m.group(1).strip()
+            vol["period"] = m.group(2).strip()
+        for item in ss.get("items", []):
+            clean = re.sub(r'^\*\*(.+?)\*\*:\s*', r'\1: ', item).strip()
+            vol["highlights"].append(clean)
+
     for item in sub.get("items", []):
-        m = re.match(r'\s*[-*]\s+\*\*(.+?)\*\*\s*\((.+?)\)', item)
+        m = re.match(r'\*\*(.+?)\*\*\s*\((.+?)\)', item)
         if m:
             vol["role"] = m.group(1).strip()
             vol["period"] = m.group(2).strip()
@@ -402,7 +470,7 @@ def smart_merge(existing: dict, fresh: dict) -> dict:
         existing.get("education", []),
         fresh.get("education", []),
         match_keys=["institution"],
-        preserve_keys=["logo", "details"],
+        preserve_keys=["logo"],
         add_new=False,
     )
 
@@ -420,7 +488,7 @@ def smart_merge(existing: dict, fresh: dict) -> dict:
         existing.get("volunteer", []),
         fresh.get("volunteer", []),
         match_keys=["organization"],
-        preserve_keys=["highlights"],
+        preserve_keys=[],
         add_new=False,
     )
 
